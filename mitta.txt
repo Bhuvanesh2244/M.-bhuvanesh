@@ -1,0 +1,66 @@
+
+mysql> create database managment;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use managment;
+Database changed
+mysql> create table workers(wid int,name varchar(20),design varchar(20),branch varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc workers;
++--------+-------------+------+-----+---------+-------+
+| Field  | Type        | Null | Key | Default | Extra |
++--------+-------------+------+-----+---------+-------+
+| wid    | int         | YES  |     | NULL    |       |
+| name   | varchar(20) | YES  |     | NULL    |       |
+| design | varchar(20) | YES  |     | NULL    |       |
+| branch | varchar(20) | YES  |     | NULL    |       |
++--------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into workers values;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> insert into workers values(13,"akhil","marketing","chennai");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into workers values(13,"karthik","account","goa");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into workers values(15,"bhuvanesh","finance","kerela");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into workers values(19,"jones","manager","banglore");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into workers values(25,"tamilz","manager","mumbai");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from workers;
++------+-----------+-----------+----------+
+| wid  | name      | design    | branch   |
++------+-----------+-----------+----------+
+|   13 | akhil     | marketing | chennai  |
+|   13 | karthik   | account   | goa      |
+|   15 | bhuvanesh | finance   | kerela   |
+|   19 | jones     | manager   | banglore |
+|   25 | tamilz    | manager   | mumbai   |
++------+-----------+-----------+----------+
+5 rows in set (0.00 sec)
+
+mysql> alter table workers add category varchar(20);
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> select * from workers;
++------+-----------+-----------+----------+----------+
+| wid  | name      | design    | branch   | category |
++------+-----------+-----------+----------+----------+
+|   13 | akhil     | marketing | chennai  | NULL     |
+|   13 | karthik   | account   | goa      | NULL     |
+|   15 | bhuvanesh | finance   | kerela   | NULL     |
+|   19 | jones     | manager   | banglore | NULL     |
+|   25 | tamilz    | manager   | mumbai   | NULL     |
++------+-----------+-----------+----------+----------+
+5 rows in set (0.00 sec)
+
+mysql>

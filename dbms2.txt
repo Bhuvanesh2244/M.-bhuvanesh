@@ -1,0 +1,138 @@
+ create database company;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use company;
+Database changed
+mysql> create table student(id int,name varchar(20),department varchar(20),salary int);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> desc student;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| id         | int         | YES  |     | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| department | varchar(20) | YES  |     | NULL    |       |
+| salary     | int         | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+4 rows in set (0.02 sec)
+
+mysql> insert into student values(23,karthik,production,40000);
+ERROR 1054 (42S22): Unknown column 'karthik' in 'field list'
+mysql> insert into student values(23,"karthik",production,40000);
+ERROR 1054 (42S22): Unknown column 'production' in 'field list'
+mysql> insert into student values(23,"karthik","production",40000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(45,"bhuvanesh","finanace",30000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(12,"akhil","manufacture",20000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from table student;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table student' at line 1
+mysql> select * from student;
++------+-----------+-------------+--------+
+| id   | name      | department  | salary |
++------+-----------+-------------+--------+
+|   23 | karthik   | production  |  40000 |
+|   45 | bhuvanesh | finanace    |  30000 |
+|   12 | akhil     | manufacture |  20000 |
++------+-----------+-------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select department,id from table;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'table' at line 1
+mysql> select department,id from student;
++-------------+------+
+| department  | id   |
++-------------+------+
+| production  |   23 |
+| finanace    |   45 |
+| manufacture |   12 |
++-------------+------+
+3 rows in set (0.00 sec)
+
+mysql> select id,salary,salary * 0.5 from student;
++------+--------+--------------+
+| id   | salary | salary * 0.5 |
++------+--------+--------------+
+|   23 |  40000 |      20000.0 |
+|   45 |  30000 |      15000.0 |
+|   12 |  20000 |      10000.0 |
++------+--------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where id=23;
++------+---------+------------+--------+
+| id   | name    | department | salary |
++------+---------+------------+--------+
+|   23 | karthik | production |  40000 |
++------+---------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select * from student where department=finance;
+ERROR 1054 (42S22): Unknown column 'finance' in 'where clause'
+mysql> select * from student where department="finance";
+Empty set (0.00 sec)
+
+mysql> select * from student;
++------+-----------+-------------+--------+
+| id   | name      | department  | salary |
++------+-----------+-------------+--------+
+|   23 | karthik   | production  |  40000 |
+|   45 | bhuvanesh | finanace    |  30000 |
+|   12 | akhil     | manufacture |  20000 |
++------+-----------+-------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where salary=30000;
++------+-----------+------------+--------+
+| id   | name      | department | salary |
++------+-----------+------------+--------+
+|   45 | bhuvanesh | finanace   |  30000 |
++------+-----------+------------+--------+
+1 row in set (0.00 sec)
+
+mysql> select distinct department from student;
++-------------+
+| department  |
++-------------+
+| production  |
+| finanace    |
+| manufacture |
++-------------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student order by id;
++------+-----------+-------------+--------+
+| id   | name      | department  | salary |
++------+-----------+-------------+--------+
+|   12 | akhil     | manufacture |  20000 |
+|   23 | karthik   | production  |  40000 |
+|   45 | bhuvanesh | finanace    |  30000 |
++------+-----------+-------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student order by department;
++------+-----------+-------------+--------+
+| id   | name      | department  | salary |
++------+-----------+-------------+--------+
+|   45 | bhuvanesh | finanace    |  30000 |
+|   12 | akhil     | manufacture |  20000 |
+|   23 | karthik   | production  |  40000 |
++------+-----------+-------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> select * from student where id between 12 and 45;
++------+-----------+-------------+--------+
+| id   | name      | department  | salary |
++------+-----------+-------------+--------+
+|   23 | karthik   | production  |  40000 |
+|   45 | bhuvanesh | finanace    |  30000 |
+|   12 | akhil     | manufacture |  20000 |
++------+-----------+-------------+--------+
+3 rows in set (0.00 sec)
+
+mysql> "C:\Users\bhuva\Downloads

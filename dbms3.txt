@@ -1,0 +1,112 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 20
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database bank;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use bank;
+Database changed
+mysql> create table bank(customerid int,customername varchar(20),accountno int,balance int,customerbranch varchar(20));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc bank;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| customerid     | int         | YES  |     | NULL    |       |
+| customername   | varchar(20) | YES  |     | NULL    |       |
+| accountno      | int         | YES  |     | NULL    |       |
+| balance        | int         | YES  |     | NULL    |       |
+| customerbranch | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> insert into bank values(10,'akhil',190,4565,'chennai');
+Query OK, 1 row affected (0.02 sec)
+
+mysql> select*from bank;
++------------+--------------+-----------+---------+----------------+
+| customerid | customername | accountno | balance | customerbranch |
++------------+--------------+-----------+---------+----------------+
+|         10 | akhil        |       190 |    4565 | chennai        |
++------------+--------------+-----------+---------+----------------+
+1 row in set (0.00 sec)
+
+mysql> insert into bank(customerid,customername,accountno,balance,customerbranch) values(30,'abhi',65,7000,'hyderabad'),(25,'nikhil',46,5000,'ongole');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> insert into bank(customerid,customername,accountno,balance,customerbranch) values(30,'abhi',65,7000,'hyderabad'),(25,'nikhil',46,5000,'ongole');
+Query OK, 2 rows affected (0.01 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+mysql> select*from bank;
++------------+--------------+-----------+---------+----------------+
+| customerid | customername | accountno | balance | customerbranch |
++------------+--------------+-----------+---------+----------------+
+|         10 | akhil        |       190 |    4565 | chennai        |
+|         30 | abhi         |        65 |    7000 | hyderabad      |
+|         25 | nikhil       |        46 |    5000 | ongole         |
+|         30 | abhi         |        65 |    7000 | hyderabad      |
+|         25 | nikhil       |        46 |    5000 | ongole         |
++------------+--------------+-----------+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql>  update bank set customerbranch = 'chirala' where customerid=25;
+Query OK, 2 rows affected (0.01 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select*from bank;
++------------+--------------+-----------+---------+----------------+
+| customerid | customername | accountno | balance | customerbranch |
++------------+--------------+-----------+---------+----------------+
+|         10 | akhil        |       190 |    4565 | chennai        |
+|         30 | abhi         |        65 |    7000 | hyderabad      |
+|         25 | nikhil       |        46 |    5000 | chirala        |
+|         30 | abhi         |        65 |    7000 | hyderabad      |
+|         25 | nikhil       |        46 |    5000 | chirala        |
++------------+--------------+-----------+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> delete from bank where customerbranch='chirala';
+Query OK, 2 rows affected (0.02 sec)
+
+mysql> select*from bank;
++------------+--------------+-----------+---------+----------------+
+| customerid | customername | accountno | balance | customerbranch |
++------------+--------------+-----------+---------+----------------+
+|         10 | akhil        |       190 |    4565 | chennai        |
+|         30 | abhi         |        65 |    7000 | hyderabad      |
+|         30 | abhi         |        65 |    7000 | hyderabad      |
++------------+--------------+-----------+---------+----------------+
+3 rows in set (0.00 sec)
+
+mysql> truncate table bank;
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> select* from bank;
+Empty set (0.00 sec)
+
+mysql> desc bank;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| customerid     | int         | YES  |     | NULL    |       |
+| customername   | varchar(20) | YES  |     | NULL    |       |
+| accountno      | int         | YES  |     | NULL    |       |
+| balance        | int         | YES  |     | NULL    |       |
+| customerbranch | varchar(20) | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql>

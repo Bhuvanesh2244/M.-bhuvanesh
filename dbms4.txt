@@ -1,0 +1,136 @@
+Enter password: ********
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 14
+Server version: 8.0.33 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2023, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> create database student;
+ERROR 1007 (HY000): Can't create database 'student'; database exists
+mysql> create database Dbms;
+Query OK, 1 row affected (0.01 sec)
+
+mysql> use Dbms;
+Database changed
+mysql> create table Dbms(regno int,name varchar(20),phoneno int,address varchar(40));
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> desc Dbms;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| regno   | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
+| address | varchar(40) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.03 sec)
+
+mysql> alter table Dbms add(branch varchar(10));
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Dbms;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| regno   | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
+| address | varchar(40) | YES  |     | NULL    |       |
+| branch  | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table Dbms modify branch varchar(15);
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Dbms;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| regno   | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
+| address | varchar(40) | YES  |     | NULL    |       |
+| branch  | varchar(15) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table Dbms modify column branch varchar(10);
+Query OK, 0 rows affected (0.05 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Dbms;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| regno   | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
+| address | varchar(40) | YES  |     | NULL    |       |
+| branch  | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table Dbms rename column branch to department;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Dbms;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| regno      | int         | YES  |     | NULL    |       |
+| name       | varchar(20) | YES  |     | NULL    |       |
+| phoneno    | int         | YES  |     | NULL    |       |
+| address    | varchar(40) | YES  |     | NULL    |       |
+| department | varchar(10) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> alter table Dbms drop column department;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc Dbms;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| regno   | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
+| address | varchar(40) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> rename table Dbms to akhil
+    -> rename table Dbms to akhil;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'rename table Dbms to akhil' at line 2
+mysql> rename table Dbms to akhil;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc akhil;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| regno   | int         | YES  |     | NULL    |       |
+| name    | varchar(20) | YES  |     | NULL    |       |
+| phoneno | int         | YES  |     | NULL    |       |
+| address | varchar(40) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> drop table akhil;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
