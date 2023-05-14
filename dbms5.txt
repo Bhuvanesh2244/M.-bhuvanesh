@@ -1,0 +1,193 @@
+create database student details;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'details' at line 1
+mysql> create database studentdetails;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> use student details;
+Database changed
+mysql> create table student details(name varchar(20),address varchar(20));
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'details(name varchar(20),address varchar(20))' at line 1
+mysql> create table studentdetails(name varchar(20),address varchar(20));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc studentdetails;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into studentdetails values(harsh,kolkata);
+ERROR 1054 (42S22): Unknown column 'harsh' in 'field list'
+mysql> insert into studentdetails values("harsh","kolkata");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentdetails values("ashish","pratik");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentdetails values("ram","dhanraj");
+Query OK, 1 row affected (0.00 sec)
+
+mysql> drop studentdetails;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'studentdetails' at line 1
+mysql> drop table studentdetails;
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from studentdetails;
+ERROR 1146 (42S02): Table 'student.studentdetails' doesn't exist
+mysql> desc studentdetails;
+ERROR 1146 (42S02): Table 'student.studentdetails' doesn't exist
+mysql> show tables;
++-------------------+
+| Tables_in_student |
++-------------------+
+| bhuvanesh         |
++-------------------+
+1 row in set (0.00 sec)
+
+mysql> create table studentdetails(name varchar((20
+    -> ^C
+mysql> create table studendetails(name varchar(20),address varchar(50));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> insert into studentdetails("harch","kolkata");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '"harch","kolkata")' at line 1
+mysql> insert into studentdetails values("harch","kolkata");
+ERROR 1146 (42S02): Table 'student.studentdetails' doesn't exist
+mysql> insert into studentdetails values("harch","kolkata");
+ERROR 1146 (42S02): Table 'student.studentdetails' doesn't exist
+mysql> insert into studentdetails values("harsh","kolkata");
+ERROR 1146 (42S02): Table 'student.studentdetails' doesn't exist
+mysql> insert into studentdetails values('harsh','kolkata');
+ERROR 1146 (42S02): Table 'student.studentdetails' doesn't exist
+mysql> create table mouse(name varchar(20),address varchar(30));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc mouse;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| name    | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(30) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+2 rows in set (0.00 sec)
+
+mysql> insert into mouse values('harsh','kolkata');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mouse values('ashish','chennai');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mouse values('pratik','dhanraj');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mouse values('ram','rajasthan');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into mouse('sreenu','dehradun');
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ''sreenu','dehradun')' at line 1
+mysql> insert into mouse values('sreenu','dehradun');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from mouse;
++--------+-----------+
+| name   | address   |
++--------+-----------+
+| harsh  | kolkata   |
+| ashish | chennai   |
+| pratik | dhanraj   |
+| ram    | rajasthan |
+| sreenu | dehradun  |
++--------+-----------+
+5 rows in set (0.00 sec)
+
+mysql> create view mouseview as select name,address from mouse where adddress="kolkata","dehradun";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',"dehradun"' at line 1
+mysql> create view mouseview as select name,address from mouse where address="kolkata","dehradun";
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ',"dehradun"' at line 1
+mysql> create view mouseview as select name,address from mouse where address=("kolkata","dehradun");
+ERROR 1241 (21000): Operand should contain 1 column(s)
+mysql> create view mouseview as select name,address from mouse where address="kolkata";
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> select * from mouseview;
++-------+---------+
+| name  | address |
++-------+---------+
+| harsh | kolkata |
++-------+---------+
+1 row in set (0.00 sec)
+
+mysql> create table studentmarks(id int,name varchar(20),marks int, age int);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc studentmarks;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(20) | YES  |     | NULL    |       |
+| marks | int         | YES  |     | NULL    |       |
+| age   | int         | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into studentmarks(29,'pratik',90,21);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '29,'pratik',90,21)' at line 1
+mysql> insert into studentmarks values(29,'pratik',90,21);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentmarks values(23,'harsh',95,28);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentmarks values(26,'ram',85,19);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into studentmarks values(5,'sreenu',99,18);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from studentmarks;
++------+--------+-------+------+
+| id   | name   | marks | age  |
++------+--------+-------+------+
+|   29 | pratik |    90 |   21 |
+|   23 | harsh  |    95 |   28 |
+|   26 | ram    |    85 |   19 |
+|    5 | sreenu |    99 |   18 |
++------+--------+-------+------+
+4 rows in set (0.00 sec)
+
+mysql> create view studentmarksview as select studentdetials.name,studentdetails.address,studentmarks.marks from studentdetails,student marks
+    -> where studentdetails.name=studentmarks.name;
+ERROR 1146 (42S02): Table 'student.studentdetails' doesn't exist
+mysql> create view studentmarksview as select mouse.name,mouse.address,studentmarks.marks from mouse,student marks
+    -> where mouse.name=studentmarks.name;
+ERROR 1146 (42S02): Table 'student.student' doesn't exist
+mysql> create view mouseview as select mouse.name,mouse.address,studentmarks.marks from mouse,studentmarks
+    -> where mouse.name=studentmarks.name;
+ERROR 1050 (42S01): Table 'mouseview' already exists
+mysql> create view studentmarks view as select mouse.name,mouse.address,studentmarks.marks from mouse,student marks
+    -> where mouse.name=studentmarks.name;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'view as select mouse.name,mouse.address,studentmarks.marks from mouse,student ma' at line 1
+mysql> create view studentmarksview as select mouse.name,mouse.address,studentmarks.marks from mouse,student marks
+    -> where mouse.name=studentmarks.name;
+ERROR 1146 (42S02): Table 'student.student' doesn't exist
+mysql> create view studentmarksview as select mouse.name,mouse.address,studentmarks.marks from mouse,studentmarks
+    -> where mouse.name=studentmarks.name;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql>
+mysql> select * from studentmarksview;
++--------+-----------+-------+
+| name   | address   | marks |
++--------+-----------+-------+
+| harsh  | kolkata   |    95 |
+| pratik | dhanraj   |    90 |
+| ram    | rajasthan |    85 |
+| sreenu | dehradun  |    99 |
++--------+-----------+-------+
+4 rows in set (0.00 sec)
+
+mysql>

@@ -1,0 +1,171 @@
+mysql> use bank;
+Database changed
+mysql> desc bank;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int         | YES  |     | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| accountno  | int         | YES  |     | NULL    |       |
+| balance    | int         | YES  |     | NULL    |       |
+| branch     | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> create index bank_index on bank(customerid);
+Query OK, 0 rows affected (0.06 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from bank;
++-------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| bank  |          1 | bank_index |            1 | customerid  | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++-------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+1 row in set (0.01 sec)
+
+mysql> drop index bank_index;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> alter table bank drop index bank_index;
+Query OK, 0 rows affected (0.01 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from bank;
+Empty set (0.00 sec)
+
+mysql> alter table bank add index bank_index(customerid);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> show index from bank;
++-------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| Table | Non_unique | Key_name   | Seq_in_index | Column_name | Collation | Cardinality | Sub_part | Packed | Null | Index_type | Comment | Index_comment | Visible | Expression |
++-------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+| bank  |          1 | bank_index |            1 | customerid  | A         |           3 |     NULL |   NULL | YES  | BTREE      |         |               | YES     | NULL       |
++-------+------------+------------+--------------+-------------+-----------+-------------+----------+--------+------+------------+---------+---------------+---------+------------+
+1 row in set (0.00 sec)
+
+mysql> desc workers;
+ERROR 1146 (42S02): Table 'bank.workers' doesn't exist
+mysql> desc bank;
++------------+-------------+------+-----+---------+-------+
+| Field      | Type        | Null | Key | Default | Extra |
++------------+-------------+------+-----+---------+-------+
+| customerid | int         | YES  | MUL | NULL    |       |
+| name       | varchar(10) | YES  |     | NULL    |       |
+| accountno  | int         | YES  |     | NULL    |       |
+| balance    | int         | YES  |     | NULL    |       |
+| branch     | varchar(20) | YES  |     | NULL    |       |
++------------+-------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+
+mysql> select * from bank;
++------------+----------+-----------+---------+-----------+
+| customerid | name     | accountno | balance | branch    |
++------------+----------+-----------+---------+-----------+
+|         25 | vishva   |     24567 |    7000 | chennai   |
+|         28 | keshav   |     89707 |    8000 | hyderabad |
+|         21 | karthik  |     89760 |    4000 | delhi     |
+|         25 | akhilsai |     90876 |    3000 | mumbai    |
++------------+----------+-----------+---------+-----------+
+4 rows in set (0.00 sec)
+
+mysql> select accountno,balance,
+    -> case
+    -> when balance>3000 then 'the balance is greater than 3000'
+    -> when balance=3000 then 'the balance is 3000'
+    -> else the balance is under 3000
+    -> end
+    -> from bank;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'balance is under 3000
+end
+from bank' at line 5
+mysql> select accountno,balance,
+    -> case
+    -> when balance>3000 then 'the balance is greater than 3000'
+    -> when balance=3000 then 'the balance is 3000'
+    -> else 'the balance is under 3000'
+    -> end
+    -> from bank;
++-----------+---------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+| accountno | balance | case
+when balance>3000 then 'the balance is greater than 3000'
+when balance=3000 then 'the balance is 3000'
+else 'the balance is under 3000'
+end |
++-----------+---------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+|     24567 |    7000 | the balance is greater than 3000
+                                                           |
+|     89707 |    8000 | the balance is greater than 3000
+                                                           |
+|     89760 |    4000 | the balance is greater than 3000
+                                                           |
+|     90876 |    3000 | the balance is 3000
+                                                           |
++-----------+---------+--------------------------------------------------------------------------------------------------------------------------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> select name,branch,accountno,
+    -> ^C
+mysql> create table student(id int,name varchar(30),marks int,grade varchar(30);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '' at line 1
+mysql> create table student(id int,name varchar(30),marks int,grade varchar(30));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc student;
++-------+-------------+------+-----+---------+-------+
+| Field | Type        | Null | Key | Default | Extra |
++-------+-------------+------+-----+---------+-------+
+| id    | int         | YES  |     | NULL    |       |
+| name  | varchar(30) | YES  |     | NULL    |       |
+| marks | int         | YES  |     | NULL    |       |
+| grade | varchar(30) | YES  |     | NULL    |       |
++-------+-------------+------+-----+---------+-------+
+4 rows in set (0.00 sec)
+
+mysql> insert into student values(23,'krithik',500,A++);
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near ')' at line 1
+mysql> insert into student values(23,'krithik',500,'A++');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(27,'prashanth',550,'S');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(28,'karthik',570,'B++');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student values(28,'karthik',400,'c');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from student;
++------+-----------+-------+-------+
+| id   | name      | marks | grade |
++------+-----------+-------+-------+
+|   23 | krithik   |   500 | A++   |
+|   27 | prashanth |   550 | S     |
+|   28 | karthik   |   570 | B++   |
+|   28 | karthik   |   400 | c     |
++------+-----------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> update student set grade=case
+    -> when marks>500 then 'A'
+    -> when marks=500 then 'B'
+    -> else 'C'
+    -> end
+    -> ;
+Query OK, 4 rows affected (0.00 sec)
+Rows matched: 4  Changed: 4  Warnings: 0
+
+mysql> select * from student;
++------+-----------+-------+-------+
+| id   | name      | marks | grade |
++------+-----------+-------+-------+
+|   23 | krithik   |   500 | B     |
+|   27 | prashanth |   550 | A     |
+|   28 | karthik   |   570 | A     |
+|   28 | karthik   |   400 | C     |
++------+-----------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql>
